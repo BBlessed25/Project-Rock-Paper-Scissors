@@ -1,0 +1,64 @@
+const prompt = require('prompt-sync')();
+
+// Array: valid options
+const choices = ['rock', 'paper', 'scissors'];
+
+// Object: game state with cumulative score
+let game = {
+  wins: 0,
+  losses: 0,
+  draws: 0,
+};
+
+// Function to get computer's random choice
+function getComputerChoice() {
+  const index = Math.floor(Math.random() * choices.length);
+  return choices[index];
+}
+
+// Function to handle one round
+function playRound(playerChoice, computerChoice) {
+  if (playerChoice === computerChoice) {
+    game.draws++;
+    return "It's a draw!";
+  }
+
+  const winConditions = {
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper',
+  };
+
+  if (winConditions[playerChoice] === computerChoice) {
+    game.wins++;
+    return "You win!";
+  } else {
+    game.losses++;
+    return "You lose!";
+  }
+}
+
+// Main loop: plays rounds until user quits
+while (true) {
+  console.log("\n=== Rock-Paper-Scissors Game ===");
+  const playerInput = prompt("Enter rock, paper, or scissors (or 'q' to quit): ").toLowerCase();
+
+  if (playerInput === 'q') {
+    console.log("\nGame Over. Thanks for playing!");
+    console.log(`Final Score → Wins: ${game.wins}, Losses: ${game.losses}, Draws: ${game.draws}`);
+    break;
+  }
+
+  if (!choices.includes(playerInput)) {
+    console.log("❌ Invalid input. Try again.");
+    continue;
+  }
+
+  const computerChoice = getComputerChoice();
+  const result = playRound(playerInput, computerChoice);
+
+  console.log(`\nYou chose: ${playerInput}`);
+  console.log(`Computer chose: ${computerChoice}`);
+  console.log(`${result}`);
+  console.log(`Current Score → Wins: ${game.wins}, Losses: ${game.losses}, Draws: ${game.draws}`);
+}
