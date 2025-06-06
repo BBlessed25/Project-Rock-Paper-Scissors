@@ -1,22 +1,22 @@
 const prompt = require('prompt-sync')();
 
-// Array: valid options
+// valid options
 const choices = ['rock', 'paper', 'scissors'];
 
-// Object: game state with cumulative score
+
 let game = {
   wins: 0,
   losses: 0,
   draws: 0,
 };
 
-// Function to get computer's random choice
+
 function getComputerChoice() {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
 }
 
-// Function to handle one round
+
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
     game.draws++;
@@ -38,7 +38,7 @@ function playRound(playerChoice, computerChoice) {
   }
 }
 
-// Main loop: plays rounds until user quits
+// Main loop
 while (true) {
   console.log("\n=== Rock-Paper-Scissors Game ===");
   const playerInput = prompt("Enter rock, paper, or scissors (or 'q' to quit): ").toLowerCase();
