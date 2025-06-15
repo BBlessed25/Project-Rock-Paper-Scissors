@@ -1,8 +1,6 @@
 const prompt = require('prompt-sync')();
-
 // valid options
 const choices = ['rock', 'paper', 'scissors'];
-
 
 let game = {
   wins: 0,
@@ -10,12 +8,10 @@ let game = {
   draws: 0,
 };
 
-
 function getComputerChoice() {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
 }
-
 
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
@@ -37,7 +33,6 @@ function playRound(playerChoice, computerChoice) {
     return "You lose!";
   }
 }
-
 // Main loop
 while (true) {
   console.log("\n=== Rock-Paper-Scissors Game ===");
