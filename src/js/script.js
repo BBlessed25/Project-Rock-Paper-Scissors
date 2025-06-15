@@ -15,8 +15,7 @@ function getComputerChoice() {
 
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
-    game.draws++;
-    return "It's a draw!";
+      return "draw";
   }
 
   const winConditions = {
@@ -25,35 +24,48 @@ function playRound(playerChoice, computerChoice) {
     scissors: 'paper',
   };
 
-  if (winConditions[playerChoice] === computerChoice) {
-    game.wins++;
-    return "You win!";
-  } else {
-    game.losses++;
-    return "You lose!";
-  }
+  return winConditions[playerChoice] === computerChoice ? "player" : "computer";
 }
+
 // Main loop
 while (true) {
   console.log("\n=== Rock-Paper-Scissors Game ===");
   const playerInput = prompt("Enter rock, paper, or scissors (or 'q' to quit): ").toLowerCase();
 
-  if (playerInput === 'q') {
-    console.log("\nGame Over. Thanks for playing!");
-    console.log(`Final Score → Wins: ${game.wins}, Losses: ${game.losses}, Draws: ${game.draws}`);
-    break;
+  let playerChoice = prompt('Choose rock, paper, or scissors: ').toLowerCase();
+
+  if (!choices.includes(playerChoice)) {
+      console.log("Invalid choice. Round skipped.");
+      continue;
   }
 
-  if (!choices.includes(playerInput)) {
-    console.log("❌ Invalid input. Try again.");
-    continue;
-  }
+  let computerChoice = getComputerChoice();
 
-  const computerChoice = getComputerChoice();
-  const result = playRound(playerInput, computerChoice);
-
-  console.log(`\nYou chose: ${playerInput}`);
+  console.log(`You chose: ${playerChoice}`);
   console.log(`Computer chose: ${computerChoice}`);
-  console.log(`${result}`);
-  console.log(`Current Score → Wins: ${game.wins}, Losses: ${game.losses}, Draws: ${game.draws}`);
+
+  let result = playRound(playerChoice, computerChoice);
+
+  if (result === "player") {
+      console.log("You win this round!");
+      score.player++;
+  } else if (result === "computer") {
+      console.log("Computer wins this round!");
+      score.computer++;
+  } else {
+      console.log("This round is a draw!");
+  }
+
+  console.log(`Current Score — You: ${score.player}, Computer: ${score.computer}`);
+}
+
+console.log(`\n--- Game Over ---`);
+console.log(`Final Score — You: ${score.player}, Computer: ${score.computer}`);
+
+if (score.player > score.computer) {
+  console.log(" You are the overall winner!");
+} else if (score.computer > score.player) {
+  console.log(" Computer wins the game.");
+} else {
+  console.log("The game is a draw!");
 }
