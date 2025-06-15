@@ -1,20 +1,16 @@
 const prompt = require('prompt-sync')();
-
 // valid options
 const choices = ['rock', 'paper', 'scissors'];
-
 
 let score = {
   player: 0,
   computer: 0
 };
 
-
 function getComputerChoice() {
   const index = Math.floor(Math.random() * choices.length);
   return choices[index];
 }
-
 
 function playRound(playerChoice, computerChoice) {
   if (playerChoice === computerChoice) {
@@ -61,7 +57,6 @@ for (let round = 1; round <= 5; round++) {
   console.log(`Current Score — You: ${score.player}, Computer: ${score.computer}`);
 }
 
-// Final result
 console.log(`\n--- Game Over ---`);
 console.log(`Final Score — You: ${score.player}, Computer: ${score.computer}`);
 
@@ -70,5 +65,5 @@ if (score.player > score.computer) {
 } else if (score.computer > score.player) {
   console.log(" Computer wins the game.");
 } else {
-  console.log("🤝 The game is a draw!");
+  console.log("The game is a draw!");
 }
