@@ -2,9 +2,10 @@ const prompt = require('prompt-sync')();
 // valid options
 const choices = ['rock', 'paper', 'scissors'];
 
-let score = {
-  player: 0,
-  computer: 0
+let game = {
+  wins: 0,
+  losses: 0,
+  draws: 0,
 };
 
 function getComputerChoice() {
@@ -26,9 +27,10 @@ function playRound(playerChoice, computerChoice) {
   return winConditions[playerChoice] === computerChoice ? "player" : "computer";
 }
 
-//  loop to play 5 rounds
-for (let round = 1; round <= 5; round++) {
-  console.log(`\n--- Round ${round} ---`);
+// Main loop
+while (true) {
+  console.log("\n=== Rock-Paper-Scissors Game ===");
+  const playerInput = prompt("Enter rock, paper, or scissors (or 'q' to quit): ").toLowerCase();
 
   let playerChoice = prompt('Choose rock, paper, or scissors: ').toLowerCase();
 
