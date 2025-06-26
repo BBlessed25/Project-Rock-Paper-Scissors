@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors Game</title>
+  <link rel="stylesheet" href="/Project-Rock-Paper-Scissors/version3-ui/src/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Rock Paper Scissors</h1>
+    <div class="game-info">
+      <p id="motivation">Make your move! First to 5 rounds wins.</p>
+      <div class="buttons">
+        <button onclick="playGame('rock')">🪨 Rock</button>
+        <button onclick="playGame('paper')">📄 Paper</button>
+        <button onclick="playGame('scissors')">✂️ Scissors</button>
+      </div>
+      <div class="result-display">
+        <p>Computer chose: <span id="computer-choice">-</span></p>
+        <p>Round result: <span id="round-result">-</span></p>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Player</th>
+          <th>Computer</th>
+          <th>Result</th>
+          <th>Score (P - C)</th>
+        </tr>
+      </thead>
+      <tbody id="score-table"></tbody>
+    </table>
+
+    <button class="reset-btn" onclick="resetGame()">🔄 Reset Game</button>
+  </div>
+
+  <script src="/Project-Rock-Paper-Scissors/version3-ui/src/css/script2.js"></script>
+</body>
+</html>
